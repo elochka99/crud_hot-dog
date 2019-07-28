@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Hot-dogs list</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div></div>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm">
+                <h2 class="title">Hotdogs list</h2>
+                <form name="hotdogForm">
+                    <input type="hidden" name="id" value="0" />
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input class="form-control" name="name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cost">Cost:</label>
+                        <input class="form-control" name="cost" />
+                    </div>
+                    <div class="panel-body">
+                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                        <a id="reset" class="btn btn-sm btn-secondary text-white">Reset</a>
+                    </div>
+                </form>
+                <table class="table table-condensed table-striped table-bordered mt-3 rounded">
+                    <thead><tr><th class="text-center">Name</th><th class="text-center">Cost</th><th class="text-center">Action</th></tr></thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

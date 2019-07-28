@@ -1,0 +1,22 @@
+{
+  "name": "hot-dog_crud",
+  "version": "1.0.0",
+  "description": "crud api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "el_ochka",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7",
+    "mongoose": "^5.6.7"
+  },
+  "devDependencies": {
+    "install": "^0.12.2",
+    "npm": "^6.9.0"
+  },
+  "keywords": []
+}
