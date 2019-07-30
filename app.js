@@ -10,10 +10,9 @@ const Hotdog = mongoose.model("Hotdog", hotdogScheme);
 
 app.use(express.static(__dirname + "/public"));
 
-// mongoose.connect("mongodb://heroku_mzrsxhg9:2kqodtgcnklah51pvs4fo1bgrq@ds239206.mlab.com:39206/heroku_mzrsxhg9", { useNewUrlParser: true }, function(err){
-    // mongodb://<dbuser>:<dbpassword>@ds239206.mlab.com:39206/heroku_mzrsxhg9
-// mongoose.connect("mongodb://localhost:27017/hotdogdb", { useNewUrlParser: true }, function(err){
-mongoose.connect("mongodb://heroku_mzrsxhg9:@ds239206.mlab.com:39206/heroku_mzrsxhg9", { useNewUrlParser: true }, function(err){
+
+mongoose.connect("mongodb://root:test1234@ds239206.mlab.com:39206/heroku_mzrsxhg9", { useNewUrlParser: true });
+mongoose.connection.on('error', function(err){
     if(err) return console.log(err);
     app.listen(8000, function(){
         console.log("Server connected..localhost:8000");
