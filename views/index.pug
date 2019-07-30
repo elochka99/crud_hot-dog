@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  div
+  .container.pt-5
+    .row
+      .col-sm
+        h2.title Hotdogs list
+        form(name='hotdogForm')
+          input(type='hidden' name='id' value='0')
+          .form-group
+            label(for='name') Name:
+            input.form-control(name='name')
+          .form-group
+            label(for='cost') Cost:
+            input.form-control(name='cost')
+          .panel-body
+            button.btn.btn-sm.btn-primary(type='submit') Save
+            a#reset.btn.btn-sm.btn-secondary.text-white Reset
+        table.table.table-condensed.table-striped.table-bordered.mt-3.rounded
+          thead
+            tr
+              th.text-center Name
+              th.text-center Cost
+              th.text-center Action
+          tbody
+

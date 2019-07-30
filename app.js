@@ -1,77 +1,47 @@
-const mongoose = require("mongoose");
-const express = require("express");
-const Schema = mongoose.Schema;
-const app = express();
-const jsonParser = express.json();
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let mongoose = require('mongoose');
 
+let indexRouter = require('./routes/index');
 
-const hotdogScheme = new Schema({name: String, cost: Number}, {versionKey: false});
-const Hotdog = mongoose.model("Hotdog", hotdogScheme);
+let app = express();
 
-app.use(express.static(__dirname + "/public"));
+// mongoose.connect('mongodb://root:edhemnetqx71198@ds139534.mlab.com:39534/heroku_dhlwt4cm', { useNewUrlParser: true });
+mongoose.connect('mongodb://root:qwerty1234567@ds257507.mlab.com:57507/heroku_js5123pp', { useNewUrlParser: true });
 
-
-mongoose.connect("mongodb://root:test1234@ds239206.mlab.com:39206/heroku_mzrsxhg9", { useNewUrlParser: true });
-mongoose.connection.on('error', function(err){
-    if(err) return console.log(err);
-    app.listen(8000, function(){
-        console.log("Server connected..localhost:8000");
-    });
+mongoose.connection.on('error', function() {
+    console.error('MongoDB Connection Error. Make sure MongoDB is running.');
 });
 
-app.get("/list", function(req, res){
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
-    Hotdog.find({}, function(err, hotdogs){
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-        if(err) return console.log(err);
-        res.send(hotdogs)
-    });
+app.use('/', indexRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.get("/:id", function(req, res){
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    const id = req.params.id;
-    Hotdog.findOne({_id: id}, function(err, hotdog){
-
-        if(err) return console.log(err);
-        res.send(hotdog);
-    });
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
-app.post("/add", jsonParser, function (req, res) {
-
-    if(!req.body) return res.sendStatus(400);
-
-    const hotdogName = req.body.name;
-    const hotdogCost = req.body.cost;
-    const hotdog = new Hotdog({name: hotdogName, cost: hotdogCost});
-
-    hotdog.save(function(err){
-        if(err) return console.log(err);
-        res.send(hotdog);
-    });
-});
-
-app.delete("/delete/:id", function(req, res){
-
-    const id = req.params.id;
-    Hotdog.findByIdAndDelete(id, function(err, hotdog){
-
-        if(err) return console.log(err);
-        res.send(hotdog);
-    });
-});
-
-app.put("/update", jsonParser, function(req, res){
-
-    if(!req.body) return res.sendStatus(400);
-    const id = req.body.id;
-    const hotdogName = req.body.name;
-    const hotdogCost = req.body.cost;
-    const newhotdog = {cost: hotdogCost, name: hotdogName};
-
-    Hotdog.findOneAndUpdate({_id: id}, newhotdog, {new: true}, function(err, hotdog){
-        if(err) return console.log(err);
-        res.send(hotdog);
-    });
-});
+module.exports = app;
