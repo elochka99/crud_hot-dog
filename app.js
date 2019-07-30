@@ -9,8 +9,9 @@ const hotdogScheme = new Schema({name: String, cost: Number}, {versionKey: false
 const Hotdog = mongoose.model("Hotdog", hotdogScheme);
 
 app.use(express.static(__dirname + "/public"));
+// mongoose.connect("mongodb://localhost:27017/hotdogdb", { useNewUrlParser: true }, function(err){
 
-mongoose.connect("mongodb://localhost:27017/hotdogdb", { useNewUrlParser: true }, function(err){
+mongoose.connect("mongodb://heroku_mzrsxhg9:2kqodtgcnklah51pvs4fo1bgrq@ds239206.mlab.com:39206/heroku_mzrsxhg9", { useNewUrlParser: true }, function(err){
     if(err) return console.log(err);
     app.listen(8000, function(){
         console.log("Server connected..localhost:8000");
