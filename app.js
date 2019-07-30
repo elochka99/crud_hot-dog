@@ -11,8 +11,8 @@ app.use(express.static(__dirname + "/public"));
 
 mongoose.connect("mongodb://localhost:27017/hotdogdb", { useNewUrlParser: true }, function(err){
     if(err) return console.log(err);
-    app.listen(3000, function(){
-        console.log("Server connected..localhost:3000");
+    app.listen(8000, function(){
+        console.log("Server connected..localhost:8000");
     });
 });
 
