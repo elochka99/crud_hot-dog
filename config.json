@@ -1,7 +1,0 @@
-{
-  "connectionString": "mongodb://localhost:27017/",
-  "newUrlParser": {
-    "useNewUrlParser": true
-  },
-  "port": 3000
-}
