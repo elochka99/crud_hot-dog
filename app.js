@@ -3,7 +3,7 @@ const express = require("express");
 const Schema = mongoose.Schema;
 const app = express();
 const jsonParser = express.json();
-var router = express.Router();
+
 
 const hotdogScheme = new Schema({name: String, cost: Number}, {versionKey: false});
 const Hotdog = mongoose.model("Hotdog", hotdogScheme);
@@ -18,7 +18,7 @@ mongoose.connect("mongodb://localhost:27017/hotdogdb", { useNewUrlParser: true }
     });
 });
 
-router.get("/list", function(req, res){
+app.get("/list", function(req, res){
 
     Hotdog.find({}, function(err, hotdogs){
 
@@ -27,7 +27,7 @@ router.get("/list", function(req, res){
     });
 });
 
-router.get("/:id", function(req, res){
+app.get("/:id", function(req, res){
 
     const id = req.params.id;
     Hotdog.findOne({_id: id}, function(err, hotdog){
@@ -37,7 +37,7 @@ router.get("/:id", function(req, res){
     });
 });
 
-router.post("/add", jsonParser, function (req, res) {
+app.post("/add", jsonParser, function (req, res) {
 
     if(!req.body) return res.sendStatus(400);
 
@@ -51,7 +51,7 @@ router.post("/add", jsonParser, function (req, res) {
     });
 });
 
-router.delete("/delete/:id", function(req, res){
+app.delete("/delete/:id", function(req, res){
 
     const id = req.params.id;
     Hotdog.findByIdAndDelete(id, function(err, hotdog){
@@ -61,7 +61,7 @@ router.delete("/delete/:id", function(req, res){
     });
 });
 
-router.put("/update", jsonParser, function(req, res){
+app.put("/update", jsonParser, function(req, res){
 
     if(!req.body) return res.sendStatus(400);
     const id = req.body.id;
