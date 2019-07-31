@@ -9,8 +9,7 @@ let indexRouter = require('./routes/index');
 
 let app = express();
 
-// mongoose.connect('mongodb://root:edhemnetqx71198@ds139534.mlab.com:39534/heroku_dhlwt4cm', { useNewUrlParser: true });
-mongoose.connect('mongodb://root:qwerty1234567@ds257507.mlab.com:57507/heroku_js5123pp', { useNewUrlParser: true });
+mongoose.connect('mongodb://root:edhemnetqx71198@ds139534.mlab.com:39534/heroku_dhlwt4cm', { useNewUrlParser: true });
 
 mongoose.connection.on('error', function() {
     console.error('MongoDB Connection Error. Make sure MongoDB is running.');
