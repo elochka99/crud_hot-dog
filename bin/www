@@ -5,7 +5,7 @@
  */
 
 let app = require('../app');
-let debug = require('debug')('sheltered-ocean-65809:server');
+let debug = require('debug')('frozen-scrubland-59678:server');
 let http = require('http');
 
 /**
